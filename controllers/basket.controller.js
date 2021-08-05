@@ -22,16 +22,38 @@ exports.addToBasket = async (req, res, next) => {
   req.flash("success", "Product added to basket!");
 };
 
-exports.removeFromBasket = async (req, res, next) => {
+exports.removeAllInstances = async (req, res, next) => {
   const { productId } = req.params;
-  const product = await Product.findById(productId);
   const basket = await Basket.findOne({ userId: req.user._id });
   let productIndex = basket.products.findIndex((p) => p.productId == productId);
   if (productIndex !== -1) {
+    const product = await Product.findById(productId);
     basket.totalQty -= basket.products[productIndex].qty;
     basket.totalCost -= basket.products[productIndex].price;
+    await basket.products.remove({ _id: cart.items[itemIndex]._id });
     await basket.save();
-    await Basket.findByIdAndUpdate(basket._id, { $pull: { products: { productId } } });
+    res.status(200).json({ message: "Product removed from basket!", product });
+    req.flash("success", "Product removed from basket!");
+  } else {
+    res.status(500).json({ message: "The product you are trying to delete does not exist!" });
+    req.flash("error", "Product removed from basket!");
+  }
+};
+
+exports.removeOneInstance = async (req, res, next) => {
+  const { productId } = req.params;
+  const basket = await Basket.findOne({ userId: req.user._id });
+  let productIndex = basket.products.findIndex((p) => p.productId == productId);
+  if (productIndex !== -1) {
+    const product = await Product.findById(productId);
+    basket.products[productIndex].qty--;
+    basket.products[productIndex].price -= product.price;
+    basket.totalQty--;
+    basket.totalCost -= product.price;
+    if (basket.products[productIndex].qty <= 0) {
+      await basket.products.remove({ _id: basket.products[productIndex]._id });
+    }
+    await basket.save();
     res.status(200).json({ message: "Product removed from basket!", product });
     req.flash("success", "Product removed from basket!");
   } else {

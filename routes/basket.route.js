@@ -7,6 +7,7 @@ const Basket = require("../controllers/basket.controller");
 router
   .route("/:productId")
   .post(isLoggedIn, catchAsync(Basket.addToBasket))
-  .delete(isLoggedIn, catchAsync(Basket.removeFromBasket));
+  .delete(isLoggedIn, catchAsync(Basket.removeAllInstances))
+  .put(isLoggedIn, catchAsync(Basket.removeOneInstance));
 
 module.exports = router;
