@@ -30,8 +30,8 @@ exports.removeAllInstances = async (req, res, next) => {
     const product = await Product.findById(productId);
     basket.totalQty -= basket.products[productIndex].qty;
     basket.totalCost -= basket.products[productIndex].price;
-    await basket.products.remove({ _id: cart.items[itemIndex]._id });
     await basket.save();
+    await Basket.findByIdAndUpdate(basket._id, { $pull: { products: { productId } } });
     res.status(200).json({ message: "Product removed from basket!", product });
     req.flash("success", "Product removed from basket!");
   } else {
