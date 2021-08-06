@@ -27,8 +27,6 @@ Register new user and login directly.
 }
 ```
 
----
-
 ### **User Login**
 
 #### URL: `https://webshop-rest-api.herokuapp.com/user/login`
@@ -78,6 +76,26 @@ Register new user and login directly.
 ---
 
 ## Basket
+
+#### Basket model
+
+```json
+{
+  "_id": "String",
+  "totalQty": "Number",
+  "totalCost": "Number",
+  "userId": "String",
+  "products": [
+    {
+      "qty": "Number",
+      "price": "Number",
+      "_id": "String",
+      "productId": "String",
+      "title": "String"
+    }
+  ]
+}
+```
 
 ### Add product to basket
 
