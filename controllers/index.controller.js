@@ -9,10 +9,10 @@ exports.search = async (req, res) => {
     .populate("category")
     .exec();
   if (searchedProducts.length) {
-    res.status(200).json({ message: "Product searched correctly", searchedProducts });
+    res.status(200).json({ message: "Product searched correctly!", searchedProducts });
   } else {
     req.flash("error", "The product you are searching for does not exist");
-    throw new ExpressError("The product you are searching for does not exist", 404);
+    throw new ExpressError("The product you are searching for does not exist!", 404);
   }
 };
 

@@ -58,6 +58,6 @@ exports.removeOneInstance = async (req, res, next) => {
     res.status(200).json({ message: "Instance of product removed from basket!", product });
   } else {
     req.flash("error", "Product removed from basket!");
-    res.status(500).json({ message: "The product you are trying to delete does not exist!" });
+    res.status(500).json({ error: "The product you are trying to delete does not exist!" });
   }
 };
