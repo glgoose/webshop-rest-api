@@ -1,6 +1,11 @@
 const Basket = require("../models/basket.model");
 const Product = require("../models/product.model");
 
+exports.getBasket = async (req, res) => {
+  const basket = await Basket.findOne({ userId: req.user._id });
+  res.status(200).json({ message: "Basket displayed succesfully!", basket });
+};
+
 exports.addToBasket = async (req, res, next) => {
   const { productId } = req.params;
   const basket = await Basket.findOne({ userId: req.user._id });

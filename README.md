@@ -79,25 +79,104 @@ Register new user and login directly.
 
 ---
 
-## Basket
+## Products
 
-#### Basket model
+### Get all products
+
+#### URL: `https://webshop-rest-api.herokuapp.com/products`
+
+#### Method: `GET`
+
+#### Success Response `200`
 
 ```json
 {
-  "_id": "String",
-  "totalQty": "Number",
-  "totalCost": "Number",
-  "userId": "String",
+  "message": "All products displayed correctly!",
   "products": [
     {
-      "qty": "Number",
-      "price": "Number",
       "_id": "String",
-      "productId": "String",
-      "title": "String"
+      "title": "String",
+      "image": "String",
+      "description": "String",
+      "category": "String (Category Id)",
+      "price": "Number",
+      "createdAt": "Date"
     }
   ]
+}
+```
+
+#### Error Response `500`
+
+```json
+{
+  "error": "ErrorMessage"
+}
+```
+
+---
+
+## Categories
+
+### Get all categories
+
+#### URL: `https://webshop-rest-api.herokuapp.com/categories`
+
+#### Method: `GET`
+
+#### Success Response `200`
+
+```json
+{
+  "message": "All categories displayed correctly!",
+  "categories": [
+    {
+      "_id": "CategoryId",
+      "title": "String",
+      "slug": "String"
+    }
+  ]
+}
+```
+
+#### Error Response `500`
+
+```js
+{
+  "error": "ErrorMessage"
+}
+```
+
+---
+
+## Basket
+
+#### Display basket
+
+#### URL: `https://webshop-rest-api.herokuapp.com/basket`
+
+#### Method: `GET`
+
+#### Success Response `200`
+
+```json
+{
+  "message": "PBasket displayed succesfully!",
+  "basket": {
+    "totalQty": "Number",
+    "totalCost": "Number",
+    "_id": "String",
+    "userId": "String",
+    "products": []
+  }
+}
+```
+
+#### Error Response `500`
+
+```js
+{
+  "error": "ErrorMessage"
 }
 ```
 
@@ -272,44 +351,9 @@ Register new user and login directly.
 
 #### Category list
 
-```json
-[
-  {
-    "_id": "CategoryId",
-    "title": "Shoes",
-    "slug": "shoes"
-  },
-  {
-    "_id": "CategoryId",
-    "title": "Sweatshirts",
-    "slug": "sweatshirts"
-  },
-  {
-    "_id": "CategoryId",
-    "title": "Backpacks",
-    "slug": "backpacks"
-  },
-  {
-    "_id": "CategoryId",
-    "title": "Jackets",
-    "slug": "jackets"
-  },
-  {
-    "_id": "CategoryId",
-    "title": "Jeans",
-    "slug": "jeans"
-  },
-  {
-    "_id": "CategoryId",
-    "title": "Sandals",
-    "slug": "sandals"
-  }
-]
-```
-
 #### URL: `https://webshop-rest-api.herokuapp.com/filter/:slug`
 
-#### Method: `POST`
+#### Method: `GET`
 
 #### Success Response `200`
 
