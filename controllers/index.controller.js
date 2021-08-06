@@ -1,4 +1,6 @@
 const Product = require("../models/product.model");
+const Basket = require("../models/basket.model");
+const Order = require("../models/order.model");
 const Category = require("../models/category.model");
 const ExpressError = require("../utils/ExpressError");
 
@@ -21,4 +23,31 @@ exports.filterByCategory = async (req, res) => {
   const foundCategory = await Category.findOne({ slug });
   const filteredProducts = await Product.find({ category: foundCategory.id }).sort("-createdAt").populate("category");
   res.status(200).json({ filteredProducts });
+};
+
+exports.checkout = async (req, res) => {
+  const { address } = req.body;
+  const basket = await Basket.findOne({ userId: req.user._id });
+  if (basket.products.length) {
+    const { totalQty, totalCost, products } = basket;
+    const order = new Order({
+      basket: {
+        totalQty,
+        totalCost,
+        products,
+      },
+      address,
+    });
+    await order.save();
+    await Basket.findByIdAndUpdate(basket._id, {
+      totalQty: 0,
+      totalCost: 0,
+      products: [],
+    });
+    req.flash("success", "Successfully purchased!");
+    res.status(200).send(order);
+  } else {
+    req.flash("error", "Cannot proceed with checkout, your basket is empty!");
+    throw new ExpressError("Cannot proceed with checkout, your basket is empty!", 400);
+  }
 };

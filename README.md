@@ -10,6 +10,8 @@ Register new user and login directly.
 
 ##### Method: `POST`
 
+#### Required fields: `firstName`, `lastName`, `email`, `password`
+
 ##### Success Response `201`
 
 ```json
@@ -32,6 +34,8 @@ Register new user and login directly.
 #### URL: `https://webshop-rest-api.herokuapp.com/user/login`
 
 #### Method: `POST`
+
+#### Required fields: `email`, `password`
 
 #### Success Response `200`
 
@@ -190,11 +194,50 @@ Register new user and login directly.
 }
 ```
 
+### Checkout
+
+#### URL: `https://webshop-rest-api.herokuapp.com/checkout`
+
+#### Method: `POST`
+
+#### Required field: `address`
+
+#### Success Response `200`
+
+```json
+{
+  "basket": {
+    "totalQty": "Number",
+    "totalCost": "Number",
+    "products": [
+      {
+        "qty": "Number",
+        "price": "Number",
+        "_id": "String",
+        "productId": "String",
+        "title": "String"
+      }
+    ]
+  },
+  "_id": "String",
+  "address": "String",
+  "createdAt": "Date"
+}
+```
+
+#### Error Response `400`
+
+```js
+{
+  "error": ""Cannot proceed with checkout, your basket is empty!""
+}
+```
+
 ---
 
 ## Search and filter
 
-### Search for a product
+### Search for products
 
 #### URL: `https://webshop-rest-api.herokuapp.com/search?q=productToSearch`
 
