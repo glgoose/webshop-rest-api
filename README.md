@@ -351,7 +351,7 @@ Register new user and login directly.
 
 #### Category list
 
-#### URL: `https://webshop-rest-api.herokuapp.com/filter/:slug`
+#### URL: `https://webshop-rest-api.herokuapp.com/category/:categoryId`
 
 #### Method: `GET`
 
