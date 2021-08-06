@@ -4,6 +4,16 @@ const Order = require("../models/order.model");
 const Category = require("../models/category.model");
 const ExpressError = require("../utils/ExpressError");
 
+exports.getAllProducts = async (req, res) => {
+  const products = await Product.find({}).sort("-createdAt").populate("category");
+  res.status(200).json({ message: "All products displayed correctly!", products });
+};
+
+exports.getAllCategories = async (req, res) => {
+  const categories = await Category.find({}).sort("-createdAt").populate("category");
+  res.status(200).json({ message: "All categories displayed correctly!", categories });
+};
+
 exports.search = async (req, res) => {
   const { q } = req.query;
   const searchedProducts = await Product.find({ title: { $regex: q, $options: "i" } })
@@ -19,9 +29,8 @@ exports.search = async (req, res) => {
 };
 
 exports.filterByCategory = async (req, res) => {
-  const { slug } = req.params;
-  const foundCategory = await Category.findOne({ slug });
-  const filteredProducts = await Product.find({ category: foundCategory.id }).sort("-createdAt").populate("category");
+  const { categoryId } = req.params;
+  const filteredProducts = await Product.find({ category: categoryId }).sort("-createdAt").populate("category");
   res.status(200).json({ filteredProducts });
 };
 
@@ -45,7 +54,7 @@ exports.checkout = async (req, res) => {
       products: [],
     });
     req.flash("success", "Successfully purchased!");
-    res.status(200).send(order);
+    res.status(200).json({ message: "Successfully purchased!", order });
   } else {
     req.flash("error", "Cannot proceed with checkout, your basket is empty!");
     throw new ExpressError("Cannot proceed with checkout, your basket is empty!", 400);
