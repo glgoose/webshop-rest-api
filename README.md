@@ -151,7 +151,7 @@ Register new user and login directly.
 }
 ```
 
-#### Error Response `500`
+#### Error Response `404`
 
 ```js
 {
@@ -182,7 +182,7 @@ Register new user and login directly.
 }
 ```
 
-#### Error Response `500`
+#### Error Response `404`
 
 ```js
 {
