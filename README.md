@@ -151,7 +151,7 @@ Register new user and login directly.
 
 ## Basket
 
-#### Display basket
+### Display basket
 
 #### URL: `https://webshop-rest-api.herokuapp.com/basket`
 
@@ -161,7 +161,7 @@ Register new user and login directly.
 
 ```json
 {
-  "message": "PBasket displayed succesfully!",
+  "message": "Basket displayed succesfully!",
   "basket": {
     "totalQty": "Number",
     "totalCost": "Number",
@@ -308,7 +308,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": ""Cannot proceed with checkout, your basket is empty!""
+  "error": "Cannot proceed with checkout, your basket is empty!"
 }
 ```
 
