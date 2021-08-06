@@ -5,7 +5,7 @@ const catchAsync = require("../utils/catchAsync");
 const Basket = require("../controllers/basket.controller");
 
 router
-  .get("/", catchAsync(Basket.getBasket))
+  .get("/", isLoggedIn, catchAsync(Basket.getBasket))
   .route("/:productId")
   .post(isLoggedIn, catchAsync(Basket.addToBasket))
   .delete(isLoggedIn, catchAsync(Basket.removeAllInstances))
