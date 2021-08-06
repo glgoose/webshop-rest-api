@@ -194,7 +194,7 @@ Register new user and login directly.
 
 ## Search and filter
 
-### Search for a product
+### Search for products
 
 #### URL: `https://webshop-rest-api.herokuapp.com/search?q=productToSearch`
 
