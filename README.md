@@ -349,8 +349,6 @@ Register new user and login directly.
 
 ### Filter products by category
 
-#### Category list
-
 #### URL: `https://webshop-rest-api.herokuapp.com/category/:categoryId`
 
 #### Method: `GET`
