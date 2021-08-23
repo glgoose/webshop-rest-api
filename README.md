@@ -6,7 +6,7 @@
 
 Register new user and login directly.
 
-##### URL: `https://webshop-rest-api.herokuapp.comhttps://webshop-rest-api.herokuapp.com/user/register`
+##### URL: `https://webshop-rest-api.herokuapp.com/user/register`
 
 ##### Method: `POST`
 
