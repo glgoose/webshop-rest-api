@@ -52,6 +52,10 @@ app.use("/user", userRoute);
 app.use("/basket", basketRoute);
 app.use("/", indexRoute);
 
+app.get("/", (req, res) => {
+  res.send("Hello from Webshop Rest API!");
+});
+
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
   if (!err.message) err.message = "Something Went Wrong!";

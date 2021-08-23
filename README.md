@@ -90,20 +90,17 @@ Register new user and login directly.
 #### Success Response `200`
 
 ```json
-{
-  "message": "All products displayed correctly!",
-  "products": [
-    {
-      "_id": "String",
-      "title": "String",
-      "image": "String",
-      "description": "String",
-      "category": "String (Category Id)",
-      "price": "Number",
-      "createdAt": "Date"
-    }
-  ]
-}
+[
+  {
+    "_id": "String",
+    "title": "String",
+    "image": "String",
+    "description": "String",
+    "category": "String (Category Id)",
+    "price": "Number",
+    "createdAt": "Date"
+  }
+]
 ```
 
 #### Error Response `500`
@@ -127,16 +124,13 @@ Register new user and login directly.
 #### Success Response `200`
 
 ```json
-{
-  "message": "All categories displayed correctly!",
-  "categories": [
-    {
-      "_id": "CategoryId",
-      "title": "String",
-      "slug": "String"
-    }
-  ]
-}
+[
+  {
+    "_id": "CategoryId",
+    "title": "String",
+    "slug": "String"
+  }
+]
 ```
 
 #### Error Response `500`
@@ -161,14 +155,11 @@ Register new user and login directly.
 
 ```json
 {
-  "message": "Basket displayed succesfully!",
-  "basket": {
-    "totalQty": "Number",
-    "totalCost": "Number",
-    "_id": "String",
-    "userId": "String",
-    "products": []
-  }
+  "totalQty": "Number",
+  "totalCost": "Number",
+  "_id": "String",
+  "userId": "String",
+  "products": []
 }
 ```
 
@@ -285,22 +276,25 @@ Register new user and login directly.
 
 ```json
 {
-  "basket": {
-    "totalQty": "Number",
-    "totalCost": "Number",
-    "products": [
-      {
-        "qty": "Number",
-        "price": "Number",
-        "_id": "String",
-        "productId": "String",
-        "title": "String"
-      }
-    ]
-  },
-  "_id": "String",
-  "address": "String",
-  "createdAt": "Date"
+  "message": "Successfully purchased!",
+  "order": {
+    "basket": {
+      "totalQty": "Number",
+      "totalCost": "Number",
+      "products": [
+        {
+          "qty": "Number",
+          "price": "Number",
+          "_id": "String",
+          "productId": "String",
+          "title": "String"
+        }
+      ]
+    },
+    "_id": "String",
+    "address": "String",
+    "createdAt": "Date"
+  }
 }
 ```
 
@@ -325,9 +319,8 @@ Register new user and login directly.
 #### Success Response `200`
 
 ```json
-{
-  "message": "Product searched correctly!",
-  "product": {
+[
+  {
     "_id": "String",
     "title": "String",
     "image": "String",
@@ -336,7 +329,7 @@ Register new user and login directly.
     "price": "Number",
     "createdAt": "Date"
   }
-}
+]
 ```
 
 #### Error Response `404`
@@ -356,19 +349,17 @@ Register new user and login directly.
 #### Success Response `200`
 
 ```json
-{
-  "filteredProducts": [
-    {
-      "_id": "String",
-      "title": "String",
-      "image": "String",
-      "description": "String",
-      "category": "String (Category Id)",
-      "price": "Number",
-      "createdAt": "Date"
-    }
-  ]
-}
+[
+  {
+    "_id": "String",
+    "title": "String",
+    "image": "String",
+    "description": "String",
+    "category": "String (Category Id)",
+    "price": "Number",
+    "createdAt": "Date"
+  }
+]
 ```
 
 #### Error Response `500`

@@ -6,12 +6,12 @@ const ExpressError = require("../utils/ExpressError");
 
 exports.getAllProducts = async (req, res) => {
   const products = await Product.find({}).sort("-createdAt").populate("category");
-  res.status(200).json({ message: "All products displayed correctly!", products });
+  res.status(200).json(products);
 };
 
 exports.getAllCategories = async (req, res) => {
   const categories = await Category.find({}).sort("-createdAt").populate("category");
-  res.status(200).json({ message: "All categories displayed correctly!", categories });
+  res.status(200).json(categories);
 };
 
 exports.search = async (req, res) => {
@@ -21,7 +21,7 @@ exports.search = async (req, res) => {
     .populate("category")
     .exec();
   if (searchedProducts.length) {
-    res.status(200).json({ message: "Product searched correctly!", searchedProducts });
+    res.status(200).json(searchedProducts);
   } else {
     req.flash("error", "The product you are searching for does not exist");
     throw new ExpressError("The product you are searching for does not exist!", 404);
@@ -31,7 +31,7 @@ exports.search = async (req, res) => {
 exports.filterByCategory = async (req, res) => {
   const { categoryId } = req.params;
   const filteredProducts = await Product.find({ category: categoryId }).sort("-createdAt").populate("category");
-  res.status(200).json({ filteredProducts });
+  res.status(200).json(filteredProducts);
 };
 
 exports.checkout = async (req, res) => {
