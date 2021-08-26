@@ -23,7 +23,6 @@ exports.search = async (req, res) => {
   if (searchedProducts.length) {
     res.status(200).json(searchedProducts);
   } else {
-    req.flash("error", "The product you are searching for does not exist");
     throw new ExpressError("The product you are searching for does not exist!", 404);
   }
 };
@@ -53,10 +52,8 @@ exports.checkout = async (req, res) => {
       totalCost: 0,
       products: [],
     });
-    req.flash("success", "Successfully purchased!");
     res.status(200).json({ message: "Successfully purchased!", order });
   } else {
-    req.flash("error", "Cannot proceed with checkout, your basket is empty!");
     throw new ExpressError("Cannot proceed with checkout, your basket is empty!", 400);
   }
 };

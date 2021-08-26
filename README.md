@@ -12,6 +12,8 @@ Register new user and login directly.
 
 #### Required fields: `firstName`, `lastName`, `email`, `password`
 
+#### Notes: email has to be a valid email and password has to be min 6 and max 15 alphanumeric characters
+
 ##### Success Response `201`
 
 ```json

@@ -23,7 +23,6 @@ exports.addToBasket = async (req, res, next) => {
     basket.totalCost += product.price;
     await basket.save();
   }
-  req.flash("success", "Product added to basket!");
   res.status(200).json({ message: "Product added to basket!", product });
 };
 
@@ -38,9 +37,7 @@ exports.removeAllInstances = async (req, res, next) => {
     await basket.save();
     await Basket.findByIdAndUpdate(basket._id, { $pull: { products: { productId } } });
     res.status(200).json({ message: "All instances of product removed from basket!", product });
-    req.flash("success", "Product removed from basket!");
   } else {
-    req.flash("error", "Product removed from basket!");
     res.status(404).json({ message: "The product you are trying to delete does not exist!" });
   }
 };
@@ -59,10 +56,8 @@ exports.removeOneInstance = async (req, res, next) => {
       await basket.products.remove({ _id: basket.products[productIndex]._id });
     }
     await basket.save();
-    req.flash("success", "Instance of product removed from basket!");
     res.status(200).json({ message: "Instance of product removed from basket!", product });
   } else {
-    req.flash("error", "Product removed from basket!");
     res.status(404).json({ error: "The product you are trying to delete does not exist!" });
   }
 };
