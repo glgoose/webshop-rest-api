@@ -25,6 +25,7 @@ describe("/user", () => {
       expect(user[0].lastName).toBeTruthy();
       expect(user[0].email).toBeTruthy();
       expect(res.statusCode).toEqual(201);
+      expect(res.body).toMatchObject({ message: "User succesfully registered!" });
     });
   });
 
@@ -34,8 +35,8 @@ describe("/user", () => {
         email: "dummy",
         password: "dummypassword",
       });
-
       expect(res.statusCode).toEqual(401);
+      expect(res).toMatchObject({ text: "Unauthorized" });
     });
 
     it("should succeed with correct credentials", async () => {
@@ -44,15 +45,15 @@ describe("/user", () => {
         password: "123456",
       });
       expect(res.statusCode).toEqual(200);
+      expect(res.body).toMatchObject({ message: "Logged in succesfully" });
     });
   });
 
   describe("GET /logout", () => {
     it("should logout successfully", async () => {
       const res = await request(server).get("/user/logout");
-      console.log(res.body);
       expect(res.statusCode).toEqual(200);
-      //   expect(res.body).toEqual({ ok: true })
+      expect(res.body).toEqual({ message: "User succesfully logged out!" });
     });
   });
 });

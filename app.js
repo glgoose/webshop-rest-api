@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
   if (!err.message) err.message = "Something Went Wrong!";
-  res.status(statusCode).json({ error: err.message });
+  res.status(statusCode).json({ message: err.message });
 });
 
 app.use((req, res, next) => {

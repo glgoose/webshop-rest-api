@@ -4,12 +4,8 @@ const Basket = require("../models/basket.model");
 const ExpressError = require("../utils/ExpressError");
 
 exports.login = (req, res) => {
-  try {
-    const { firstName, lastName } = req.user;
-    res.status(200).json({ message: "Logged in succesfully", loggedInUser: `${firstName} ${lastName}` });
-  } catch (err) {
-    throw new ExpressError("Incorrect credentials!", 401);
-  }
+  const { firstName, lastName } = req.user;
+  res.status(200).json({ message: "Logged in succesfully", loggedInUser: `${firstName} ${lastName}` });
 };
 
 exports.register = async (req, res, next) => {
@@ -28,6 +24,7 @@ exports.register = async (req, res, next) => {
 };
 
 exports.logout = (req, res) => {
+  // const { firstName, lastName } = req.user;
   req.logout();
   res.status(200).json({ message: "User succesfully logged out!" });
 };

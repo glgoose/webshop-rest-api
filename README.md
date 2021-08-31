@@ -52,7 +52,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "ErrorMessage"
+  "message": "ErrorMessage"
 }
 ```
 
@@ -66,8 +66,7 @@ Register new user and login directly.
 
 ```json
 {
-  "message": "User succesfully logged out!",
-  "loggedOutUser": "John Doe"
+  "message": "User succesfully logged out!"
 }
 ```
 
@@ -75,7 +74,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "ErrorMessage"
+  "message": "ErrorMessage"
 }
 ```
 
@@ -109,7 +108,7 @@ Register new user and login directly.
 
 ```json
 {
-  "error": "ErrorMessage"
+  "message": "ErrorMessage"
 }
 ```
 
@@ -139,7 +138,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "ErrorMessage"
+  "message": "ErrorMessage"
 }
 ```
 
@@ -169,7 +168,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "ErrorMessage"
+  "message": "ErrorMessage"
 }
 ```
 
@@ -200,7 +199,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "ErrorMessage"
+  "message": "ErrorMessage"
 }
 ```
 
@@ -231,7 +230,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "The product you are trying to delete does not exist!"
+  "message": "The product you are trying to delete does not exist!"
 }
 ```
 
@@ -262,7 +261,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "The product you are trying to delete does not exist!"
+  "message": "The product you are trying to delete does not exist!"
 }
 ```
 
@@ -304,7 +303,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "Cannot proceed with checkout, your basket is empty!"
+  "message": "Cannot proceed with checkout, your basket is empty!"
 }
 ```
 
@@ -338,7 +337,7 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "The product you are searching for does not exist!"
+  "message": "The product you are searching for does not exist!"
 }
 ```
 
@@ -368,6 +367,6 @@ Register new user and login directly.
 
 ```js
 {
-  "error": "ErrorMessage"
+  "message": "ErrorMessage"
 }
 ```
