@@ -1,10 +1,12 @@
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
+const config = require("config");
 
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
+  const db = config.get("db");
   try {
-    const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/webshop";
+    const dbUrl = process.env.DB_URL || db;
     await mongoose
       .connect(dbUrl, {
         useNewUrlParser: true,
@@ -14,7 +16,7 @@ const connectDB = async () => {
       })
       .catch((error) => console.log(error));
     const connection = mongoose.connection;
-    console.log("Database connected");
+    console.log(`Connected to ${db}`);
   } catch (error) {
     console.log(error);
     return error;
