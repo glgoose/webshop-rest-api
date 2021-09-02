@@ -7,6 +7,9 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
 const passport = require("passport");
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const compression = require("compression");
 
 const userRoute = require("./routes/user.route");
 const basketRoute = require("./routes/basket.route");
@@ -47,6 +50,13 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
 app.use(morgan("dev"));
+app.use(mongoSanitize());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+app.use(compression());
 
 app.use("/user", userRoute);
 app.use("/basket", basketRoute);
